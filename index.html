@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ultimate Patagonian Hunting Expedition. Fair-chase big game hunting and world-class lodge experience for the discerning sportsman.">
+    <meta name="keywords" content="Red Stag hunting Patagonia, luxury outfitter, big game hunting, Argentina hunting, fly fishing Patagonia, trophy hunting">
+    <title>Freecast Patagonia | The Ultimate Patagonian Hunting Expedition</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-dark: #0B0C10;
+            --color-bg-slate: #1F2833;
+            --color-accent: #C5A059;
+            --color-accent-light: #E0C17D;
+            --color-accent-dark: #A68545;
+            --color-text-white: #FFFFFF;
+            --color-text-gray: #B8B8B8;
+            --color-text-dark-gray: #6F7882;
+            --color-overlay: rgba(11, 12, 16, 0.7);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --container-max: 1200px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        button, .btn { cursor: pointer; border: none; outline: none; }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-white);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            text-align: center;
+            color: var(--color-accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-bg-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-accent);
+            color: var(--color-bg-dark);
+            transform: translateY(-3px);
+        }
+
+        /* ===== HEADER / NAV ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(11, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 5%;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 1px;
+        }
+
+        .navbar-logo span {
+            color: var(--color-text-white);
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .navbar-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-white);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-accent);
+            transition: var(--transition-smooth);
+        }
+
+        .navbar-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0B0C10 0%, #1a1d23 50%, #0B0C10 100%);
+            z-index: 1;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+            z-index: 2;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, var(--color-bg-dark) 0%, transparent 100%);
+            z-index: 3;
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .hero-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(197, 160, 89, 0.6);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--color-text-white);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 300;
+            color: var(--color-text-gray);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-cta {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll-indicator span {
+            display: block;
+            width: 22px;
+            height: 22px;
+            border-right: 2px solid var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(8px); }
+            60% { transform: translateX(-50%) translateY(4px); }
+        }
+        /* ===== SECTION SPACING ===== */
+        .section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-dark {
+            background-color: var(--color-bg-dark);
+        }
+
+        .section-slate {
+            background-color: var(--color-bg-slate);
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        /* ===== SCROLL ACT 1 - THE QUARRY ===== */
+        .section-quarry {
+            background-color: var(--color-bg-dark);
+        }
+
+        .quarry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .quarry-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #15171f 0%, #0d0f14 100%);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            transition: var(--transition-smooth);
+        }
+
+        .quarry-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .quarry-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(145deg, #1a1f29 0%, #0f1219 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .quarry-img-placeholder {
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(197, 160, 89, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quarry-img-placeholder svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--color-accent);
+            opacity: 0.6;
+        }
+
+        .quarry-item-content {
+            padding: 2rem;
+        }
+
+        .quarry-item-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-white);
+        }
+
+        .quarry-item-text {
+            font-size: 0.95rem;
+            color: var(--color-text-gray);
+            line-height: 1.7;
+        }
+
+        .quarry-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--color-text-dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* ===== SCROLL ACT 2 - LODGE EXPERIENCE ===== */
+        .section-lodge {
+            background-color: var(--color-bg-slate);
+        }
+
+        .lodge-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .lodge-intro p {
+            font-size: 1.1rem;
+            color: var(--color-text-gray);
+            line-height: 1.8;
+        }
+
+        .lodge-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .lodge-card {
+            background: linear-gradient(145deg, rgba(31, 40, 51, 0.8) 0%, rgba(25, 31, 39, 0.9) 100%);
+            border: 1px solid rgba(197, 160, 89, 0.12);
+            border-radius: 4px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .lodge-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .lodge-card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: rgba(197, 160, 89, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lodge-card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--color-accent);
+        }
+
+        .lodge-card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-white);
+        }
+
+        .lodge-card-text {
+            font-size: 0.9rem;
+            color: var(--color-text-gray);
+            line-height: 1.7;
+        }
+
+        /* ===== TRUST GRID ===== */
+        .section-trust {
+            background-color: var(--color-bg-dark);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.5rem;
+        }
+
+        .trust-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(197, 160, 89, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .trust-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--color-accent);
+        }
+
+        .trust-content h3 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-white);
+            margin-bottom: 0.4rem;
+        }
+
+        .trust-content p {
+            font-size: 0.88rem;
+            color: var(--color-text-gray);
+            line-height: 1.6;
+        }
+        /* ===== GALLERY / SLIDER ===== */
+        .section-gallery {
+            background-color: var(--color-bg-dark);
+            padding-bottom: 0;
+        }
+
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 400px;
+            position: relative;
+            background: linear-gradient(145deg, #1a1f29 0%, #0f1219 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gallery-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+        }
+
+        .gallery-placeholder {
+            text-align: center;
+            color: var(--color-text-dark-gray);
+        }
+
+        .gallery-placeholder svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--color-accent);
+            opacity: 0.4;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-placeholder span {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(197, 160, 89, 0.4);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-dot.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(11, 12, 16, 0.7);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            z-index: 5;
+        }
+
+        .gallery-nav-btn:hover {
+            background: rgba(197, 160, 89, 0.2);
+            border-color: var(--color-accent);
+        }
+
+        .gallery-nav-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-accent);
+        }
+
+        .gallery-nav-btn.prev { left: 1rem; }
+        .gallery-nav-btn.next { right: 1rem; }
+        /* ===== INQUIRY FORM ===== */
+        .section-inquiry {
+            background: linear-gradient(145deg, var(--color-bg-slate) 0%, var(--color-bg-dark) 100%);
+        }
+
+        .inquiry-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(11, 12, 16, 0.6);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 6px;
+            padding: 3rem 2.5rem;
+        }
+
+        .inquiry-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .inquiry-header .section-subtitle {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            color: var(--color-text-white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .form-input::placeholder {
+            color: var(--color-text-dark-gray);
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23C5A059' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .form-select option {
+            background: var(--color-bg-dark);
+            color: var(--color-text-white);
+        }
+
+        .inquiry-form button[type="submit"] {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: #050608;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: var(--container-max);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-brand .navbar-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--color-text-gray);
+            line-height: 1.7;
+            max-width: 350px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-text-gray);
+            margin-bottom: 0.6rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-col a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: var(--color-text-dark-gray);
+        }
+        /* ===== FLOATING WHASTAPP BUTTON ===== */
+        .float-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: var(--transition-smooth);
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .float-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #FFFFFF;
+        }
+
+        .float-tooltip {
+            position: absolute;
+            right: 70px;
+            background: var(--color-bg-slate);
+            color: var(--color-text-white);
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .float-btn:hover .float-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+
+            .gallery-container {
+                padding: 0 1rem;
+            }
+
+            .gallery-slide {
+                height: 280px;
+            }
+
+            .gallery-nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .inquiry-wrapper {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+
+            .footer-col h4 {
+                text-align: center;
+            }
+
+            .trust-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .float-btn {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="navbar-logo">FREECAST <span>PATAGONIA</span></a>
+        <div class="navbar-links">
+            <a href="#quarry">The Quarry</a>
+            <a href="#lodge">Lodge</a>
+            <a href="#trust">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#inquiry">Plan Your Expedition</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Patagonian Stealth Luxury</p>
+            <h1 class="hero-title">The Ultimate Patagonian<br>Hunting Expedition</h1>
+            <p class="hero-subtitle">Fair-chase big game hunting and world-class lodge experience for the discerning sportsman.</p>
+            <div class="hero-cta">
+                <a href="#inquiry" class="btn btn-primary">Check Availability</a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+    <!-- SCROLL ACT 1: THE QUARRY -->
+    <section class="section section-quarry" id="quarry">
+        <div class="container">
+            <p class="section-subtitle">The Quarry</p>
+            <h2 class="section-title">Trophy Class Red Stag in the Wildest Frontier</h2>
+            <div class="lodge-intro" style="opacity:0.8; margin-bottom:3rem;">
+                <p>The untouched wilderness of Patagonia holds one of the world's most prestigious hunting grounds. Our private reserves span hundreds of thousands of hectares, home to free-range Red Stag that have earned a global reputation for exceptional antler development.</p>
+            </div>
+            <div class="quarry-grid">
+                <article class="quarry-item">
+                    <div class="quarry-img">
+                        <div class="quarry-img-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L12 8M12 8L8 5M12 8L16 5M2 12L8 12M22 12L16 12M12 22L12 16M12 22L16 19M12 22L8 19M4.93 4.93L8.46 8.46M19.07 4.93L15.54 8.46M19.07 19.07L15.54 15.54M4.93 19.07L8.46 15.54" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+                    <div class="quarry-item-content">
+                        <h3 class="quarry-item-title">Red Stag</h3>
+                        <p class="quarry-item-text">The crown jewel of Argentine hunting. Our private estancias produce mature bulls with exceptional genetics and record-breaking antler scores.</p>
+                        <div class="quarry-stats">
+                            <div class="stat">
+                                <div class="stat-value">320"</div>
+                                <div class="stat-label">Avg. Score</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">95%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="quarry-item">
+                    <div class="quarry-img">
+                        <div class="quarry-img-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M20 7h-2V6c0-2.21-1.79-4-4-4s-4 1.79-4 4v1H8c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-8-1c0-1.1.9-2 2-2s2 .9 2 2v1h-4V6z" fill="currentColor"/></svg>
+                        </div>
+                    </div>
+                    <div class="quarry-item-content">
+                        <h3 class="quarry-item-title">Waterfowl</h3>
+                        <p class="quarry-item-text">World-class duck hunting in pristine Patagonian wetlands. Spectacular variety including Magellanic Duck, Argentine Teal, and Rosy-billed Pochard.</p>
+                        <div class="quarry-stats">
+                            <div class="stat">
+                                <div class="stat-value">300+</div>
+                                <div class="stat-label">Daily Bag</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Species</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="quarry-item">
+                    <div class="quarry-img">
+                        <div class="quarry-img-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6l5.25 3.15.75-1.23-4.5-2.67z" fill="currentColor"/></svg>
+                        </div>
+                    </div>
+                    <div class="quarry-item-content">
+                        <h3 class="quarry-item-title">Fly Fishing</h3>
+                        <p class="quarry-item-text">Combine your hunt with fly fishing in the legendary waters of Patagonia. Rainbow Brown, Brook Trout in remote rivers and stillwaters.</p>
+                        <div class="quarry-stats">
+                            <div class="stat">
+                                <div class="stat-value">25"</div>
+                                <div class="stat-label">Avg. Trophy</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">7</div>
+                                <div class="stat-label">Rivers</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- SCROLL ACT 2: LODGE EXPERIENCE -->
+    <section class="section section-lodge" id="lodge">
+        <p class="section-subtitle">The Premium Lodge</p>
+        <h2 class="section-title gs-reveal">Where Wild Meets Refined</h2>
+        <div class="lodge-intro gs-reveal">
+            <p>After a day in the rugged Patagonian landscape, return to the warmth of our mountain lodge. Built in harmony with nature, our estate combines rustic elegance with 5-star hospitality.</p>
+        </div>
+        <div class="lodge-cards">
+            <div class="lodge-card gs-reveal">
+                <div class="lodge-card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                </div>
+                <h3 class="lodge-card-title">Private Suites</h3>
+                <p class="lodge-card-text">Spacious en-suite accommodations with panoramic mountain views, king-sized beds, and handcrafted Patagonian furnishings.</p>
+            </div>
+            <div class="lodge-card gs-reveal">
+                <div class="lodge-card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+                <h3 class="lodge-card-title">Gourmet Dining</h3>
+                <p class="lodge-card-text">Farm-to-table cuisine featuring Argentine asado, fresh Patagonian lamb, and locally sourced ingredients prepared by our resident chef.</p>
+            </div>
+            <div class="lodge-card gs-reveal">
+                <div class="lodge-card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4v3c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H4V4h16v12zM8 15h8v2H8v-2z"/></svg>
+                </div>
+                <h3 class="lodge-card-title">Premium Wine Cellar</h3>
+                <p class="lodge-card-text">Extensive collection of world-class Argentine Malbecs and Chilean Cabernets, curated for the discerning palate.</p>
+            </div>
+            <div class="lodge-card gs-reveal">
+                <div class="lodge-card-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm5-6c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm-8 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+                </div>
+                <h3 class="lodge-card-title">5-Star Hospitality</h3>
+                <p class="lodge-card-text">Dedicated concierge service, daily housekeeping, spa treatments, and attention to every detail that defines luxury.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST GRID -->
+    <section class="section section-trust" id="trust">
+        <div class="container">
+            <p class="section-subtitle">Full-Service Outfitter</p>
+            <h2 class="section-title">Hassle-Free from Arrival to Departure</h2>
+            <div class="trust-grid">
+                <div class="trust-item gs-reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>Hassle-Free Gun Clearance</h3>
+                        <p>Full assistance with firearm permits, customs clearance, and ammunition logistics. We handle the paperwork so you can focus on the hunt.</p>
+                    </div>
+                </div>
+                <div class="trust-item gs-reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>1-on-1 English-Speaking Guides</h3>
+                        <p>Every hunter is paired with a dedicated professional guide fluent in English, with decades of Patagonian terrain expertise.</p>
+                    </div>
+                </div>
+                <div class="trust-item gs-reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24"><path d="M10 18h5v-6h-5v6zm-6 0h5V5H4v13zm12 0h5v-6h-5v6zM10 5v6h11V5H10z"/></svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>VIP Airport Transfers</h3>
+                        <p>Private transfers from Bariloche, San Carlos de Bariloche, or Neuquén airports directly to the lodge. Comfortable, reliable, and on-schedule.</p>
+                    </div>
+                </div>
+                <div class="trust-item gs-reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <div class="trust-content">
+                        <h3>Tailor-Made Itineraries</h3>
+                        <p>Combine hunting with fly fishing, wine tours in Mendoza, or extended Patagonian exploration. Every itinerary is custom-built.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- GALLERY -->
+    <section class="section section-gallery" id="gallery">
+        <div class="container">
+            <p class="section-subtitle">In the Field</p>
+            <h2 class="section-title">Moments from the Patagonian Frontier</h2>
+            <div class="gallery-container">
+                <button class="gallery-nav-btn prev" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-slide">
+                        <div class="gallery-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            <span>Red Stag in the Dawn Light</span>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            <span>Lodge at Sunset Over the Andes</span>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            <span>Patagonian Steppe at Dusk</span>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            <span>Trophy Mount - Record Score</span>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-placeholder">
+                            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            <span>Waterfowl on Pristine Wetlands</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="gallery-nav-btn next" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+            </div>
+            <div class="gallery-nav" id="galleryNav"></div>
+        </div>
+    </section>
+    <!-- INQUIRY FORM -->
+    <section class="section section-inquiry" id="inquiry">
+        <div class="container">
+            <div class="inquiry-wrapper">
+                <div class="inquiry-header">
+                    <p class="section-subtitle">Expedition Inquiry</p>
+                    <h2 class="section-title">Begin Your Patagonian Adventure</h2>
+                </div>
+                <form class="inquiry-form" id="inquiryForm" action="#">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="John Hunter" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="country">Country</label>
+                            <select id="country" name="country" class="form-select" required>
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="DE">Germany</option>
+                                <option value="CA">Canada</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone (optional)</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 000-0000">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="species">Target Species</label>
+                            <select id="species" name="species" class="form-select" required>
+                                <option value="">Select Species</option>
+                                <option value="red-stag">Red Stag</option>
+                                <option value="waterfowl">Waterfowl</option>
+                                <option value="fly-fishing">Fly Fishing</option>
+                                <option value="combo">Hunting + Fishing Combo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="dates">Estimated Dates</label>
+                            <input type="text" id="dates" name="dates" class="form-input" placeholder="e.g. April 2026">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Tell Us About Your Hunt</label>
+                        <textarea id="message" name="message" class="form-input" rows="4" placeholder="Any special requests, hunting experience, or questions?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="navbar-logo">FREECAST <span>PATAGONIA</span></div>
+                <p>The premier luxury hunting outfitter in Patagonia, Argentina. Specializing in fair-chase Red Stag, waterfowl, and world-class fly fishing experiences.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Expeditions</h4>
+                <a href="#quarry">Red Stag Safari</a>
+                <a href="#quarry">Waterfowl Hunts</a>
+                <a href="#quarry">Fly Fishing</a>
+                <a href="#inquiry">Custom Itineraries</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="#inquiry">Plan Your Expedition</a>
+                <a href="mailto:info@freecastpatagonia.com" aria-label="Email us">info@freecastpatagonia.com</a>
+                <a href="tel:+5492974000000" aria-label="Call us">+54 9 297 400 0000</a>
+                <a href="#trust">Services</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Freecast Patagonia. All Rights Reserved. | Designed for the Discerning Sportsman.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/5492974000000" class="float-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <span class="float-tooltip">Chat with us</span>
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <!-- JAVASCRIPT -->
+    <script>
+        // ===== WAIT FOR DOM READY =====
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ===== GSAP SETUP =====
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Animations on load
+            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            heroTl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 1, delay: 0.5 })
+                  .to('.hero-title', { opacity: 1, y: 0, duration: 1 }, '-=0.6')
+                  .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1 }, '-=0.6')
+                  .to('.hero-cta', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6');
+
+            // Hero Parallax on scroll
+            gsap.to('.hero-content', {
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                y: 150,
+                opacity: 0
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Scroll Animations for sections
+            gsap.utils.toArray('.gs-reveal').forEach(el => {
+                gsap.fromTo(el,
+                    { opacity: 0, y: 60 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // Quarry cards stagger animation
+            gsap.from('.quarry-item', {
+                opacity: 0,
+                y: 80,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.quarry-grid',
+                    start: 'top 80%'
+                }
+            });
+
+            // Lodge cards stagger
+            gsap.from('.lodge-card', {
+                opacity: 0,
+                y: 60,
+                duration: 0.9,
+                stagger: 0.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.lodge-cards',
+                    start: 'top 80%'
+                }
+            });
+
+            // Trust items stagger
+            gsap.from('.trust-item', {
+                opacity: 0,
+                x: -40,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.trust-grid',
+                    start: 'top 80%'
+                }
+            });
+
+            // Gallery section reveal
+            gsap.from('#gallery .section-subtitle, #gallery .section-title', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '#gallery',
+                    start: 'top 75%'
+                }
+            });
+
+            // Inquiry form reveal
+            gsap.from('.inquiry-wrapper', {
+                opacity: 0,
+                y: 80,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.inquiry-wrapper',
+                    start: 'top 80%'
+                }
+            });
+
+            // ===== PARTICLES IN HERO =====
+            const particlesContainer = document.getElementById('heroParticles');
+            const particleCount = 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'hero-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particlesContainer.appendChild(particle);
+                gsap.to(particle, {
+                    y: -100,
+                    opacity: 0,
+                    duration: 3 + Math.random() * 4,
+                    repeat: -1,
+                    delay: Math.random() * 3,
+                    ease: 'none'
+                });
+            }
+
+            // ===== GALLERY SLIDER =====
+            const track = document.getElementById('galleryTrack');
+            const slides = document.querySelectorAll('.gallery-slide');
+            const navContainer = document.getElementById('galleryNav');
+            const prevBtn = document.querySelector('.gallery-nav-btn.prev');
+            const nextBtn = document.querySelector('.gallery-nav-btn.next');
+            let currentIndex = 0;
+
+            // Create dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+                dot.addEventListener('click', () => goToSlide(index));
+                navContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.gallery-dot');
+
+            function updateDots() {
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                updateDots();
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                goToSlide(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                goToSlide(currentIndex);
+            });
+
+            // Touch swipe for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        currentIndex = (currentIndex + 1) % slides.length;
+                    } else {
+                        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    }
+                    goToSlide(currentIndex);
+                }
+            });
+
+            // Auto-play gallery
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                goToSlide(currentIndex);
+            }, 5000);
+
+            // ===== FORM SUBMIT =====
+            document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Sent!';
+                btn.style.backgroundColor = '#4CAF50';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                    this.reset();
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
